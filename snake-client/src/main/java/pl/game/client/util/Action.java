@@ -1,7 +1,6 @@
 package pl.game.client.util;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.layout.Region;
 
 /**
@@ -15,8 +14,8 @@ public class Action {
         region.setMaxSize(width, height);
     }
 
-    public static Class<? extends Node> getFxmlNode(FXMLLoader loader, String key){
-        return (Class<? extends Node>) loader.getNamespace().get(key);
+    public static Object getFxmlNode(FXMLLoader loader, String key){
+        return loader.getNamespace().get(key);
     }
 
 }

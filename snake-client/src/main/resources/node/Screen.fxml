@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="240.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="screenVboxConentDecorator" alignment="CENTER" prefHeight="240.0" prefWidth="200.0">
+         <children>
+            <AnchorPane fx:id="screenInfoBar" prefHeight="40.0" prefWidth="200.0" style="-fx-border-color: black;" />
+            <ScrollPane fx:id="screenScrollCenterCanvasPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+               <content>
+                  <GridPane fx:id="screenGridCenterCanvas" prefHeight="200.0" prefWidth="200.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Canvas fx:id="screenCanvas" height="50.0" width="50.0" />
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

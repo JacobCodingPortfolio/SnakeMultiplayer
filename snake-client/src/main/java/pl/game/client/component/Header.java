@@ -66,6 +66,10 @@ public class Header extends AbstractNode{
         return headerFpsTextField;
     }
 
+    @Override
+    public void buildComponent() {
+
+    }
 }
 
 

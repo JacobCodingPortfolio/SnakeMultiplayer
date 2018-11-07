@@ -39,6 +39,7 @@ public abstract class AbstractNode extends AnchorPane implements ComponentRespon
         }
         this.getChildren().add(this.paneContainer); //Add node to parent anchor pane.
         this.loadControls();
+        this.buildComponent();
     }
 
     /**
@@ -80,4 +81,8 @@ public abstract class AbstractNode extends AnchorPane implements ComponentRespon
         return metricDoubleMap;
     }
 
+    /**
+     * Method permit to build components or set behaviour in implemented nodes.
+     */
+    public abstract void buildComponent();
 }

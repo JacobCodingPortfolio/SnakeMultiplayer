@@ -80,19 +80,6 @@ public class Game {
         return gameInstance;
     }
 
-    public void changeAreaContent (Content content){
-        switch (content){
-            case GAME:
-                break;
-            case ROOM:
-                break;
-            case NOTHING:
-                break;
-            default:
-                break;
-        }
-    }
-
     public static synchronized Game getGameInstance() {
         return gameInstance;
     }

@@ -10,4 +10,8 @@ public class Roomer extends AbstractNode{
 
     }
 
+    @Override
+    public void buildComponent() {
+
+    }
 }

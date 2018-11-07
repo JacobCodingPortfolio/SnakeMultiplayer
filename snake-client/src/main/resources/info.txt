@@ -1,0 +1,7 @@
+
+Responsywność:
+Game - przekazuje info o wielkości dla obiektów które ma w sobie np. dla header i w game jest logika wielkości dla dużych komponentów
+Duże komponenty przekazują informacje dla małych komponentów.
+
+
+Po rozpoczętej grze należy blokować rosizable. Chyba że się wciśnie przycisk, który wyśle pause do serwera i będzie można komportowo zmienić wielkość.

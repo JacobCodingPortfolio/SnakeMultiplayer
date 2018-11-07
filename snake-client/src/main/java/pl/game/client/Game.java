@@ -58,10 +58,7 @@ public class Game {
     }
 
     private void changeComponentSize() {
-        //TODO - maybe I can do it better :)
         Map<Metric, Double> size = this.header.setSize(this.actualSceneWidth, Const.HEADER_HEIGHT);
-        Logger.log(String.valueOf(size.get(Metric.HEIGHT)));
-        Logger.log(String.valueOf(size.get(Metric.WIDTH)));
     }
 
     public static synchronized Game startGame(Stage primaryStage) {

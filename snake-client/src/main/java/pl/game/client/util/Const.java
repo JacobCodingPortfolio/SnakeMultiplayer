@@ -9,5 +9,7 @@ public class Const {
     public static final String SLASH = "/";
     public static final String FXML_EXTENSION = ".fxml";
     public static final String LOGGER_ARROW = " ====> ";
-    public static final double HEADER_HEIGHT = 50.0;
+    public static final double HEADER_HEIGHT = 60.0;
+    public static final double HEADER_HEIGHT_INSIDE = 50.0;
+    public static final double MIN_HEADER_WIDTH = 700.0;
 }

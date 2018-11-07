@@ -23,7 +23,7 @@ import java.util.Map;
  *
  * @author JNartowicz
  */
-public abstract class AbstractNode extends AnchorPane {
+public abstract class AbstractNode extends AnchorPane implements ComponentResponsive{
 
     private FXMLLoader fxmlLoader;
     private AnchorPane paneContainer;
@@ -60,11 +60,23 @@ public abstract class AbstractNode extends AnchorPane {
         }
     }
 
+    /**
+     * This method set size to the pane container.
+     * Current pane container must set the correctly size to own children.
+     * So that's why method setSize call to the other method called changeSizeComponents.
+     * Called method is provide by interface ComponentResponsive, which is implements to this abstract class.
+     * All of inherit class must implements method changeSizeComponents and program logic and behaviour of children components.
+     *
+     * @param width - width of the pane container
+     * @param height - height of the pane container
+     * @return setted size to the pane container
+     */
     public Map<Metric, Double> setSize(double width, double height){
         Action.changeRegionSize(this, width, height);
         Map<Metric, Double> metricDoubleMap = new HashMap<>();
         metricDoubleMap.put(Metric.WIDTH, this.getWidth());
         metricDoubleMap.put(Metric.HEIGHT, this.getHeight());
+        this.changeSizeComponents(width, height); //Method from interface
         return metricDoubleMap;
     }
 

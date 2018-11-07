@@ -9,4 +9,5 @@ public class Roomer extends AbstractNode{
     public void changeSizeComponents(double parentWidth, double parentHeight) {
 
     }
+
 }

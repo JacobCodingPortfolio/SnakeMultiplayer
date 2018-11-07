@@ -1,10 +1,14 @@
 package pl.game.client;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.omg.CORBA.PUBLIC_MEMBER;
+import pl.game.client.component.GameArea;
 import pl.game.client.component.Header;
 import pl.game.client.util.Const;
+import pl.game.client.util.Content;
 import pl.game.client.util.Logger;
 import pl.game.client.util.Metric;
 import sun.rmi.runtime.Log;
@@ -16,19 +20,20 @@ import java.util.Map;
  */
 public class Game {
 
-    private double actualSceneHeight; //TODO - dobrać domyślne wartości.
-    private double actualSceneWidth;
+    private static double actualSceneHeight;
+    private static double actualSceneWidth;
 
     private static Game gameInstance;
     private Stage primaryStage;
     private Scene primaryScene;
     private BorderPane gameContent;
     private Header header;
-
+    private GameArea gameArea;
 
     private Game(Stage primaryStage){
         this.primaryStage = primaryStage;
         buildGame();
+        setDefaultSceneSize();
         initializeBehaviour();
         propertySceneSize();
     }
@@ -36,11 +41,17 @@ public class Game {
     private void buildGame() {
         this.gameContent = new BorderPane();
         this.header = new Header();
+        this.gameArea = new GameArea();
         this.gameContent.setTop(this.header);
-        this.primaryScene = new Scene(this.gameContent);
+        this.gameContent.setCenter(this.gameArea);
+        this.primaryScene = new Scene(this.gameContent, Const.INITIAL_WIDTH, Const.INITIAL_HEIGHT);
         this.primaryStage.setScene(this.primaryScene);
         this.primaryStage.sizeToScene();
         this.primaryStage.show();
+    }
+
+    private void setDefaultSceneSize() {
+        changeComponentSize(Const.INITIAL_WIDTH, Const.INITIAL_HEIGHT);
     }
 
     private void initializeBehaviour() {
@@ -48,17 +59,18 @@ public class Game {
 
     private void propertySceneSize() {
         this.primaryScene.widthProperty().addListener((observable, oldValue, newValue) -> {
-            this.actualSceneWidth = newValue.doubleValue();
-            this.changeComponentSize();
+            setActualSceneWidth(newValue.doubleValue());
+            this.changeComponentSize(getActualSceneWidth(), getActualSceneHeight());
         });
         this.primaryScene.heightProperty().addListener((observable, oldValue, newValue) -> {
-            this.actualSceneHeight = newValue.doubleValue();
-            this.changeComponentSize();
+            setActualSceneHeight(newValue.doubleValue());
+            this.changeComponentSize(getActualSceneWidth(), getActualSceneHeight());
         });
     }
 
-    private void changeComponentSize() {
-        Map<Metric, Double> size = this.header.setSize(this.actualSceneWidth, Const.HEADER_HEIGHT);
+    private void changeComponentSize(double actualSceneWidth, double actualSceneHeight) {
+        Map<Metric, Double> sizeHeader = this.header.setSize(actualSceneWidth, Const.HEADER_HEIGHT);
+        Map<Metric, Double> sizeGameArea = this.gameArea.setSize(actualSceneWidth, actualSceneHeight - Const.HEADER_HEIGHT);
     }
 
     public static synchronized Game startGame(Stage primaryStage) {
@@ -66,6 +78,19 @@ public class Game {
             gameInstance = new Game(primaryStage);
         }
         return gameInstance;
+    }
+
+    public void changeAreaContent (Content content){
+        switch (content){
+            case GAME:
+                break;
+            case ROOM:
+                break;
+            case NOTHING:
+                break;
+            default:
+                break;
+        }
     }
 
     public static synchronized Game getGameInstance() {
@@ -84,4 +109,27 @@ public class Game {
         return gameContent;
     }
 
+    public GameArea getGameArea() {
+        return gameArea;
+    }
+
+    public Header getHeader() {
+        return header;
+    }
+
+    public synchronized static void setActualSceneHeight(double actualSceneHeight) {
+        Game.actualSceneHeight = actualSceneHeight;
+    }
+
+    public synchronized static void setActualSceneWidth(double actualSceneWidth) {
+        Game.actualSceneWidth = actualSceneWidth;
+    }
+
+    public static double getActualSceneHeight() {
+        return actualSceneHeight;
+    }
+
+    public static double getActualSceneWidth() {
+        return actualSceneWidth;
+    }
 }

@@ -3,12 +3,10 @@ package pl.game.client.component;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import pl.game.client.annotation.FxmlComponent;
 import pl.game.client.util.Action;
 import pl.game.client.util.Const;
-import pl.game.client.util.Logger;
 
 
 /**
@@ -43,6 +41,31 @@ public class Header extends AbstractNode{
             Action.changeRegionSize(headerHBox, parentWidth - 2, Const.HEADER_HEIGHT_INSIDE);
         }
     }
+
+    public ScrollPane getHeaderScrollPane() {
+        return headerScrollPane;
+    }
+
+    public HBox getHeaderHBox() {
+        return headerHBox;
+    }
+
+    public Button getHeaderRunButton() {
+        return headerRunButton;
+    }
+
+    public TextField getHeaderIpTextField() {
+        return headerIpTextField;
+    }
+
+    public TextField getHeaderPingTextField() {
+        return headerPingTextField;
+    }
+
+    public TextField getHeaderFpsTextField() {
+        return headerFpsTextField;
+    }
+
 }
 
 

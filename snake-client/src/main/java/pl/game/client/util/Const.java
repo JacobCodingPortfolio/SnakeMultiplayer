@@ -12,4 +12,6 @@ public class Const {
     public static final double HEADER_HEIGHT = 60.0;
     public static final double HEADER_HEIGHT_INSIDE = 50.0;
     public static final double MIN_HEADER_WIDTH = 700.0;
+    public static final double INITIAL_WIDTH = 1000.0;
+    public static final double INITIAL_HEIGHT = 1000.0;
 }

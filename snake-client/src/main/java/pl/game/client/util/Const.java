@@ -17,4 +17,8 @@ public class Const {
     public static final double INFO_BAR_HEIGHT = 40.0;
     public static final double CANVAS_WIDTH = 1000;
     public static final double CANVAS_HEIGHT = 700;
+    public static final double SCROLL_PANE_NO_BAR_TOLERANT = 5.0;
+    public static final double THICKNESS_FRAME_GRID = 5.0;
+    public static final double GRID_SCREEN_CANVAS_WIDTH = (CANVAS_WIDTH + 2 * THICKNESS_FRAME_GRID) * 1.0;
+    public static final double GRID_SCREEN_CANVAS_HEIGHT = (CANVAS_HEIGHT + 2 * THICKNESS_FRAME_GRID) * 1.0;
 }

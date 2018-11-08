@@ -69,6 +69,8 @@ public class Game {
     }
 
     private void changeComponentSize(double actualSceneWidth, double actualSceneHeight) {
+        //Logger.log("Szerokość scene: " + String.valueOf(actualSceneWidth));
+        //Logger.log("Wysokość scene: " + String.valueOf(actualSceneHeight));
         Map<Metric, Double> sizeHeader = this.header.setSize(actualSceneWidth, Const.HEADER_HEIGHT);
         Map<Metric, Double> sizeGameArea = this.gameArea.setSize(actualSceneWidth, actualSceneHeight - Const.HEADER_HEIGHT);
     }

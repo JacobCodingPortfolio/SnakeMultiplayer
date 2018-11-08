@@ -23,13 +23,6 @@ public class Action {
         canvas.setHeight(height);
     }
 
-    public static Map<Metric, Double> getRegionSize(Region region){
-        Map<Metric, Double> regionMetric = new HashMap<>();
-        regionMetric.put(Metric.WIDTH, region.getWidth());
-        regionMetric.put(Metric.HEIGHT, region.getHeight());
-        return regionMetric;
-    }
-
     public static Object getFxmlNode(FXMLLoader loader, String key){
         return loader.getNamespace().get(key);
     }

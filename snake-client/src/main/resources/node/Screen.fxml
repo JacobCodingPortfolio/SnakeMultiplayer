@@ -13,9 +13,9 @@
       <VBox fx:id="screenVboxConentDecorator" alignment="CENTER" prefHeight="240.0" prefWidth="200.0">
          <children>
             <AnchorPane fx:id="screenInfoBar" prefHeight="40.0" prefWidth="200.0" style="-fx-border-color: black;" />
-            <ScrollPane fx:id="screenScrollCenterCanvasPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;">
+            <ScrollPane fx:id="screenScrollCenterCanvasPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: black;">
                <content>
-                  <GridPane fx:id="screenGridCenterCanvas" prefHeight="200.0" prefWidth="200.0">
+                  <GridPane fx:id="screenGridCenterCanvas" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>

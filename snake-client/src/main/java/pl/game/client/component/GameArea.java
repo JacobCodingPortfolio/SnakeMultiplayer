@@ -19,6 +19,7 @@ public class GameArea extends AbstractNode {
 
     @Override
     public void changeSizeComponents(double parentWidth, double parentHeight) {
+        //Logger.log("Przydzielona szeokość dla game area: " + String.valueOf(parentWidth), "Przydzielona wysokosć dla game area: " + String.valueOf(parentHeight));
         Action.changeRegionSize(gameAreaMainContent, parentWidth, parentHeight);
         getGameAreaContent().changeSizeComponents(parentWidth, parentHeight);
     }

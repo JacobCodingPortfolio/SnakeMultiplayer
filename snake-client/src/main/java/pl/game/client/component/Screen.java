@@ -42,26 +42,35 @@ public class Screen extends AbstractNode{
         Action.changeRegionSize(screenVboxConentDecorator, parentWidth, parentHeight);
         Action.changeRegionSize(screenInfoBar, parentWidth, Const.INFO_BAR_HEIGHT);
         Action.changeRegionSize(screenScrollCenterCanvasPane, parentWidth, parentHeight - Const.INFO_BAR_HEIGHT);
-        Map<Metric, Double> metricsScreenScrollPane = Action.getRegionSize(screenScrollCenterCanvasPane);
 
         double centerGridWidth;
         double centerGridHeight;
 
-        if(metricsScreenScrollPane.get(Metric.WIDTH) <  Const.CANVAS_WIDTH){
-            centerGridWidth = Const.CANVAS_WIDTH;
+        double widthForScreen = parentWidth  - Const.SCROLL_PANE_NO_BAR_TOLERANT;
+        double heightForScreen = (parentHeight - Const.INFO_BAR_HEIGHT) - Const.SCROLL_PANE_NO_BAR_TOLERANT;
+
+
+
+        if(widthForScreen <  Const.GRID_SCREEN_CANVAS_WIDTH){
+            centerGridWidth = Const.GRID_SCREEN_CANVAS_WIDTH;
         } else {
-            centerGridWidth = metricsScreenScrollPane.get(Metric.WIDTH);
+            centerGridWidth = widthForScreen;
         }
 
-        if(metricsScreenScrollPane.get(Metric.HEIGHT) <  Const.CANVAS_HEIGHT){
-            centerGridHeight = Const.CANVAS_HEIGHT;
+        if(heightForScreen <  Const.GRID_SCREEN_CANVAS_HEIGHT){
+            centerGridHeight = Const.GRID_SCREEN_CANVAS_HEIGHT;
         } else {
-            centerGridHeight = metricsScreenScrollPane.get(Metric.HEIGHT);
+            centerGridHeight = heightForScreen;
         }
 
         Action.changeRegionSize(screenGridCenterCanvas, centerGridWidth, centerGridHeight);
         Action.changeCanvasSize(screenCanvas, Const.CANVAS_WIDTH, Const.CANVAS_HEIGHT); //Set canvas to default
-        
+
+        GraphicsContext graphicsContext = screenCanvas.getGraphicsContext2D();
+        graphicsContext.setFill(Color.RED);
+        graphicsContext.fillRect(0, 0, Const.CANVAS_WIDTH, Const.CANVAS_HEIGHT);
+        graphicsContext.fill();
+
     }
 
     @Override

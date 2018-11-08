@@ -1,19 +1,13 @@
 package pl.game.client.component;
 
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import pl.game.client.annotation.FxmlComponent;
 import pl.game.client.util.Action;
 import pl.game.client.util.Const;
-import pl.game.client.util.Logger;
-import pl.game.client.util.Metric;
-
-import java.util.Map;
 
 
 /**
@@ -66,15 +60,30 @@ public class Screen extends AbstractNode{
         Action.changeRegionSize(screenGridCenterCanvas, centerGridWidth, centerGridHeight);
         Action.changeCanvasSize(screenCanvas, Const.CANVAS_WIDTH, Const.CANVAS_HEIGHT); //Set canvas to default
 
-        GraphicsContext graphicsContext = screenCanvas.getGraphicsContext2D();
-        graphicsContext.setFill(Color.RED);
-        graphicsContext.fillRect(0, 0, Const.CANVAS_WIDTH, Const.CANVAS_HEIGHT);
-        graphicsContext.fill();
-
     }
 
     @Override
     public void buildComponent() {
 
+    }
+
+    public VBox getScreenVboxConentDecorator() {
+        return screenVboxConentDecorator;
+    }
+
+    public AnchorPane getScreenInfoBar() {
+        return screenInfoBar;
+    }
+
+    public ScrollPane getScreenScrollCenterCanvasPane() {
+        return screenScrollCenterCanvasPane;
+    }
+
+    public GridPane getScreenGridCenterCanvas() {
+        return screenGridCenterCanvas;
+    }
+
+    public Canvas getScreenCanvas() {
+        return screenCanvas;
     }
 }

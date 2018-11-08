@@ -1,17 +1,15 @@
 package pl.game.client;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import pl.game.client.component.GameArea;
 import pl.game.client.component.Header;
+import pl.game.client.presenter.Presenter;
 import pl.game.client.util.Const;
-import pl.game.client.util.Content;
 import pl.game.client.util.Logger;
 import pl.game.client.util.Metric;
-import sun.rmi.runtime.Log;
 
 import java.util.Map;
 
@@ -20,8 +18,8 @@ import java.util.Map;
  */
 public class Game {
 
-    private static double actualSceneHeight;
-    private static double actualSceneWidth;
+    private static double actualSceneHeight = Const.INITIAL_HEIGHT;
+    private static double actualSceneWidth = Const.INITIAL_WIDTH;
 
     private static Game gameInstance;
     private Stage primaryStage;
@@ -29,12 +27,14 @@ public class Game {
     private BorderPane gameContent;
     private Header header;
     private GameArea gameArea;
+    private Presenter presenter;
+    private Thread mainThread;
 
     private Game(Stage primaryStage){
         this.primaryStage = primaryStage;
         buildGame();
         setDefaultSceneSize();
-        initializeBehaviour();
+        initializeLogic();
         propertySceneSize();
     }
 
@@ -54,7 +54,16 @@ public class Game {
         changeComponentSize(Const.INITIAL_WIDTH, Const.INITIAL_HEIGHT);
     }
 
-    private void initializeBehaviour() {
+    private void initializeLogic() {
+        this.presenter = new Presenter(this);
+        this.mainThread = new Thread(this.presenter);
+        this.mainThread.start();
+
+        this.primaryStage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
+        Logger.log("Logic initialized");
     }
 
     private void propertySceneSize() {
@@ -69,8 +78,8 @@ public class Game {
     }
 
     private void changeComponentSize(double actualSceneWidth, double actualSceneHeight) {
-        //Logger.log("Szerokość scene: " + String.valueOf(actualSceneWidth));
-        //Logger.log("Wysokość scene: " + String.valueOf(actualSceneHeight));
+//        Logger.log("Szerokość scene: " + String.valueOf(actualSceneWidth));
+//        Logger.log("Wysokość scene: " + String.valueOf(actualSceneHeight));
         Map<Metric, Double> sizeHeader = this.header.setSize(actualSceneWidth, Const.HEADER_HEIGHT);
         Map<Metric, Double> sizeGameArea = this.gameArea.setSize(actualSceneWidth, actualSceneHeight - Const.HEADER_HEIGHT);
     }

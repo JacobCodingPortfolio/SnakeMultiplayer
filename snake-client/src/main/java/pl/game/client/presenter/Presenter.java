@@ -99,25 +99,24 @@ public class Presenter implements Runnable {
 
 
     private Image getImage(int width, int height){
-        //WritableImage writableImage = new WritableImage(width, height);
+        WritableImage writableImage = new WritableImage(width, height);
 
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < bufferedImage.getWidth(); x++) {
             for (int y = 0; y < bufferedImage.getHeight(); y++) {
+                ColorSelector.getRandomColor();
                 bufferedImage.setRGB(x, y, Color.RED.getRGB());
             }
         }
 
 //        PixelWriter pixelWriter = writableImage.getPixelWriter();
-//        Color color;
 //        for(int i=0;i<width;i++){
 //            for(int j=0;j<height;j++){
-// ColorSelector.getRandomColor();
-//                pixelWriter.setColor(i, j, color);
+//                pixelWriter.setColor(i, j, ColorSelector.getRandomColor());
 //            }
 //        }
-//        return writableImage;
-    return SwingFXUtils.toFXImage(bufferedImage, null);
+        return writableImage;
+//    return SwingFXUtils.toFXImage(bufferedImage, null);
     }
 
 }

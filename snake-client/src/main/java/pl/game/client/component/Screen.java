@@ -16,7 +16,7 @@ import pl.game.client.util.Const;
 public class Screen extends AbstractNode{
 
     @FxmlComponent
-    private VBox screenVboxConentDecorator;
+    private VBox screenVboxContentDecorator;
 
     @FxmlComponent
     private AnchorPane screenInfoBar;
@@ -33,7 +33,7 @@ public class Screen extends AbstractNode{
     @Override
     public void changeSizeComponents(double parentWidth, double parentHeight) {
 
-        Action.changeRegionSize(screenVboxConentDecorator, parentWidth, parentHeight);
+        Action.changeRegionSize(screenVboxContentDecorator, parentWidth, parentHeight);
         Action.changeRegionSize(screenInfoBar, parentWidth, Const.INFO_BAR_HEIGHT);
         Action.changeRegionSize(screenScrollCenterCanvasPane, parentWidth, parentHeight - Const.INFO_BAR_HEIGHT);
 
@@ -42,8 +42,6 @@ public class Screen extends AbstractNode{
 
         double widthForScreen = parentWidth  - Const.SCROLL_PANE_NO_BAR_TOLERANT;
         double heightForScreen = (parentHeight - Const.INFO_BAR_HEIGHT) - Const.SCROLL_PANE_NO_BAR_TOLERANT;
-
-
 
         if(widthForScreen <  Const.GRID_SCREEN_CANVAS_WIDTH){
             centerGridWidth = Const.GRID_SCREEN_CANVAS_WIDTH;
@@ -67,8 +65,8 @@ public class Screen extends AbstractNode{
 
     }
 
-    public VBox getScreenVboxConentDecorator() {
-        return screenVboxConentDecorator;
+    public VBox getScreenVboxContentDecorator() {
+        return screenVboxContentDecorator;
     }
 
     public AnchorPane getScreenInfoBar() {

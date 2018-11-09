@@ -5,6 +5,7 @@ package pl.game.client.util;
  */
 public class Const {
     public static final int REFRESH_RESIZER_INTERVAL_MILISECONDS = 1000;
+    public static final int MILIS_IN_SECOND = 1000;
     public static final String RESOURCE_NODE_FOLDER = "node";
     public static final String SLASH = "/";
     public static final String FXML_EXTENSION = ".fxml";
@@ -15,6 +16,8 @@ public class Const {
     public static final double INITIAL_WIDTH = 1000.0;
     public static final double INITIAL_HEIGHT = 1000.0;
     public static final double INFO_BAR_HEIGHT = 40.0;
+    public static final int CANVAS_WIDTH_INT = 1000;
+    public static final int CANVAS_HEIGHT_INT = 700;
     public static final double CANVAS_WIDTH = 1000;
     public static final double CANVAS_HEIGHT = 700;
     public static final double SCROLL_PANE_NO_BAR_TOLERANT = 5.0;

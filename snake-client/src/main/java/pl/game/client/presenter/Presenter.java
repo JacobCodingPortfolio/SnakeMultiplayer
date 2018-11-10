@@ -1,19 +1,21 @@
 package pl.game.client.presenter;
 
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.PixelWriter;
 import pl.game.client.Game;
 import pl.game.client.util.Const;
 import pl.game.client.util.Logger;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Date;
 
 public class Presenter implements Runnable {
 
     private Game game;
+    private boolean gameRun;
 
     public Presenter(Game game) {
         this.game = game;
@@ -28,24 +30,25 @@ public class Presenter implements Runnable {
 
         while (true){
 
-            Image image = getImage(Const.CANVAS_WIDTH_INT, Const.CANVAS_HEIGHT_INT);
-            GraphicsContext context = game.getGameArea().getScreen().getScreenCanvas().getGraphicsContext2D();
-            context.drawImage(image, 0,0);
+            //Image image = getImage(Const.CANVAS_WIDTH_INT, Const.CANVAS_HEIGHT_INT);
+            //GraphicsContext context = game.getGameArea().getScreen().getScreenCanvas().getGraphicsContext2D();
+            //context.drawImage(image, 0,0);
+
+
+
+
 
             i++;
-            if(i > 100){
+            if(i > 10){
                 end = System.currentTimeMillis();
                 long time = end - start;
                 long fps = (i * Const.MILIS_IN_SECOND) / time;
-                Logger.log("Ilość klatek na sekunde: " + String.valueOf(fps));
+                Platform.runLater(() -> { //Eliminating synchronized problem
+                    game.getHeader().getHeaderFpsTextField().setText(String.valueOf(fps)); //Set the fps value to the text field
+                });
                 i = 0;
                 start = System.currentTimeMillis();
             }
-
-
-
-
-
 
             try {
                 Thread.sleep(0, 1);

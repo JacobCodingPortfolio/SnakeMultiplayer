@@ -4,9 +4,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import pl.game.client.Game;
 import pl.game.client.annotation.FxmlComponent;
 import pl.game.client.util.Action;
 import pl.game.client.util.Const;
+import pl.game.client.util.Logger;
 
 
 /**
@@ -68,7 +70,9 @@ public class Header extends AbstractNode{
 
     @Override
     public void buildComponent() {
-
+        this.headerScrollPane.setOnKeyPressed(keyEvent -> Game.getGameInstance().handleScrollPaneKeyEvent(keyEvent));
+        this.headerPingTextField.setDisable(true);//Only show data set by thread
+        this.headerFpsTextField.setDisable(true);//Only show data set by thread
     }
 }
 

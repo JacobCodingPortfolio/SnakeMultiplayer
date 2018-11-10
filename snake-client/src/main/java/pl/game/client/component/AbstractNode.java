@@ -70,15 +70,13 @@ public abstract class AbstractNode extends AnchorPane implements ComponentRespon
      *
      * @param width - width of the pane container
      * @param height - height of the pane container
-     * @return setted size to the pane container
      */
-    public Map<Metric, Double> setSize(double width, double height){
+    public void setSize(double width, double height){
         Action.changeRegionSize(this, width, height);
         Map<Metric, Double> metricDoubleMap = new HashMap<>();
         metricDoubleMap.put(Metric.WIDTH, this.getWidth());
         metricDoubleMap.put(Metric.HEIGHT, this.getHeight());
         this.changeSizeComponents(width, height); //Method from interface
-        return metricDoubleMap;
     }
 
     /**

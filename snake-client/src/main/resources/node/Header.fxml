@@ -21,9 +21,9 @@
                   <Label text="IP :" />
                   <TextField fx:id="headerIpTextField" />
                   <Label text="Ping :" />
-                  <TextField fx:id="headerPingTextField" editable="false" prefHeight="25.0" prefWidth="50.0" />
+                  <TextField fx:id="headerPingTextField" editable="false" prefHeight="25.0" prefWidth="50.0" style="-fx-spacing: 10; -fx-opacity: 1.0;" />
                   <Label text="FPS :" />
-                  <TextField fx:id="headerFpsTextField" editable="false" prefHeight="25.0" prefWidth="50.0" />
+                  <TextField fx:id="headerFpsTextField" editable="false" prefHeight="25.0" prefWidth="50.0" style="-fx-opacity: 1.0;" />
                </children>
             </HBox>
          </content>

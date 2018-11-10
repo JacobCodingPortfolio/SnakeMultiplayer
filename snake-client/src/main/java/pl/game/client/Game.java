@@ -2,14 +2,17 @@ package pl.game.client;
 
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import pl.game.client.component.GameArea;
 import pl.game.client.component.Header;
 import pl.game.client.presenter.Presenter;
+import pl.game.client.presenter.SteeringWheel;
 import pl.game.client.util.Const;
 import pl.game.client.util.Logger;
 import pl.game.client.util.Metric;
+import sun.rmi.runtime.Log;
 
 import java.util.Map;
 
@@ -29,6 +32,8 @@ public class Game {
     private GameArea gameArea;
     private Presenter presenter;
     private Thread mainThread;
+
+
 
     private Game(Stage primaryStage){
         this.primaryStage = primaryStage;
@@ -63,7 +68,21 @@ public class Game {
             Platform.exit();
             System.exit(0);
         });
-        Logger.log("Logic initialized");
+
+    }
+
+    public void handleScrollPaneKeyEvent(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()){
+            case LEFT:
+                SteeringWheel.left();
+                break;
+            case RIGHT:
+                SteeringWheel.right();
+                break;
+            default:
+                break;
+        }
+        keyEvent.consume(); //Disable scrolling by keyboard arrows
     }
 
     private void propertySceneSize() {
@@ -78,10 +97,8 @@ public class Game {
     }
 
     private void changeComponentSize(double actualSceneWidth, double actualSceneHeight) {
-//        Logger.log("Szerokość scene: " + String.valueOf(actualSceneWidth));
-//        Logger.log("Wysokość scene: " + String.valueOf(actualSceneHeight));
-        Map<Metric, Double> sizeHeader = this.header.setSize(actualSceneWidth, Const.HEADER_HEIGHT);
-        Map<Metric, Double> sizeGameArea = this.gameArea.setSize(actualSceneWidth, actualSceneHeight - Const.HEADER_HEIGHT);
+        this.header.setSize(actualSceneWidth, Const.HEADER_HEIGHT);
+        this.gameArea.setSize(actualSceneWidth, actualSceneHeight - Const.HEADER_HEIGHT);
     }
 
     public static synchronized Game startGame(Stage primaryStage) {

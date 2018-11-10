@@ -1,4 +1,4 @@
 package pl.game.common.model;
 
-public class PartialSnake {
+public class User {
 }

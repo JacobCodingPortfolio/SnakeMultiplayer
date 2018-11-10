@@ -23,7 +23,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Canvas fx:id="screenCanvas" height="50.0" width="50.0" />
+                        <Canvas fx:id="screenCanvas" height="700.0" width="1000.0" />
                      </children>
                   </GridPane>
                </content>

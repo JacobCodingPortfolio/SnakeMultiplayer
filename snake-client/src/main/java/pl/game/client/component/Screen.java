@@ -127,4 +127,5 @@ public class Screen extends AbstractNode{
     public Canvas getScreenCanvas() {
         return screenCanvas;
     }
+
 }

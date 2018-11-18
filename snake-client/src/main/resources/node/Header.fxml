@@ -14,10 +14,12 @@
          <content>
             <HBox fx:id="headerHBox" alignment="CENTER" prefHeight="50.0" prefWidth="798.0" style="-fx-spacing: 10;">
                <children>
-                  <Button fx:id="headerRunButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="220.0" text="Uruchom">
+                  <Button fx:id="headerRunButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" text="Uruchom">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin></Button>
+                  <Label layoutX="285.0" layoutY="27.0" text="Nick :" />
+                  <TextField fx:id="nickNameTextField" layoutX="324.0" layoutY="23.0" />
                   <Label text="IP :" />
                   <TextField fx:id="headerIpTextField" />
                   <Label text="Ping :" />

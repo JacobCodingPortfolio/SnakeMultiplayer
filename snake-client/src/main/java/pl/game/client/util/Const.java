@@ -7,10 +7,14 @@ import pl.game.common.util.Constant;
  * @author JNartowicz
  */
 public class Const {
-    public static final int REFRESH_RESIZER_INTERVAL_MILISECONDS = 1000;
+    public static final int REFRESH_GAME_INTERVAL_MILLISECONDS = 0;
+    public static final int REFRESH_GAME_INTERVAL_NANOSECONDS = 1;
+    public static final int REFRESH_ROOM_INTERVAL_MILLISECONDS = 2000;
+    public static final int REFRESH_ROOM_INTERVAL_NANOSECONDS = 0;
     public static final int MILIS_IN_SECOND = 1000;
     public static final String RESOURCE_NODE_FOLDER = "node";
     public static final String SLASH = "/";
+    public static final String EMPTY_STRING = "";
     public static final String FXML_EXTENSION = ".fxml";
     public static final String LOGGER_ARROW = " ====> ";
     public static final double HEADER_HEIGHT = 60.0;

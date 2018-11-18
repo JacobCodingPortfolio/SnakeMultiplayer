@@ -29,6 +29,9 @@ public class Header extends AbstractNode{
     private TextField headerIpTextField;
 
     @FxmlComponent
+    private TextField nickNameTextField;
+
+    @FxmlComponent
     private TextField headerPingTextField;
 
     @FxmlComponent
@@ -66,6 +69,15 @@ public class Header extends AbstractNode{
 
     public TextField getHeaderFpsTextField() {
         return headerFpsTextField;
+    }
+
+    public TextField getNickNameTextField() {
+        return nickNameTextField;
+    }
+
+    public void blockLoginNodesAfterLogin(){
+        this.getHeaderIpTextField().setDisable(true);
+        this.getNickNameTextField().setDisable(true);
     }
 
     @Override

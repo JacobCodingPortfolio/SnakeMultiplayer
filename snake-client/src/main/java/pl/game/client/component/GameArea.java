@@ -19,9 +19,10 @@ public class GameArea extends AbstractNode {
 
     @Override
     public void changeSizeComponents(double parentWidth, double parentHeight) {
-        //Logger.log("Przydzielona szeokość dla game area: " + String.valueOf(parentWidth), "Przydzielona wysokosć dla game area: " + String.valueOf(parentHeight));
         Action.changeRegionSize(gameAreaMainContent, parentWidth, parentHeight);
-        getGameAreaContent().changeSizeComponents(parentWidth, parentHeight);
+        if(getGameAreaContent() != null){
+            getGameAreaContent().changeSizeComponents(parentWidth, parentHeight);
+        }
     }
 
     public AnchorPane getGameAreaMainContent() {
@@ -60,6 +61,7 @@ public class GameArea extends AbstractNode {
                 Logger.log("Unsupported content.");
                 break;
         }
+        this.changeSizeComponents(Action.getRegionWidth(this), Action.getRegionHeight(this));
     }
 
     @Override
@@ -69,8 +71,8 @@ public class GameArea extends AbstractNode {
         this.initializeAction();
     }
 
-    private void initializeAction() {
-        changeAreaContent(Content.GAME);
+    private void initializeAction(){
+        this.changeAreaContent(Content.NOTHING);
     }
 
     public Screen getScreen() {

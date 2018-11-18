@@ -1,4 +1,4 @@
-package pl.game.client.presenter;
+package pl.game.client.logic;
 
 import javafx.scene.paint.Color;
 

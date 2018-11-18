@@ -7,14 +7,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import pl.game.client.component.GameArea;
 import pl.game.client.component.Header;
-import pl.game.client.presenter.Presenter;
-import pl.game.client.presenter.SteeringWheel;
+import pl.game.client.connection.Connector;
+import pl.game.client.logic.Presenter;
+import pl.game.client.logic.SteeringWheel;
 import pl.game.client.util.Const;
+import pl.game.client.util.Content;
 import pl.game.client.util.Logger;
-import pl.game.client.util.Metric;
-import sun.rmi.runtime.Log;
-
-import java.util.Map;
+import pl.game.common.model.UserRequest;
+import pl.game.common.model.UserResponse;
+import pl.game.common.util.ErrorCode;
 
 /**
  * @author JNartowicz
@@ -33,6 +34,8 @@ public class Game {
     private Presenter presenter;
     private Thread mainThread;
 
+    private String userNick;
+    private String userId;
 
 
     private Game(Stage primaryStage){
@@ -69,6 +72,43 @@ public class Game {
             System.exit(0);
         });
 
+        //Connect user action
+        this.header.getHeaderRunButton().setOnMouseClicked(event -> {
+            connect();
+        });
+    }
+
+    private void connect() {
+        try{
+            Boolean checker = Connector.checkConnection(); //Check connect is good
+            if(checker){
+                String inputNick = this.header.getNickNameTextField().getText();
+                if(inputNick != null || !inputNick.isEmpty()){
+                    UserRequest request = new UserRequest();
+                    request.setNickname(inputNick);
+                    UserResponse response = Connector.connectUser(request);
+                    if(response.getErrorCode() == ErrorCode.NICK_EXISTS){
+                        Logger.log("Nickname exists.");
+                    } else {
+                        String ni = response.getNickname();
+                        String id = response.getUserId();
+                        if(ni != null && !ni.isEmpty() && id != null && !id.isEmpty()){
+                            this.userNick = response.getNickname();
+                            this.userId = response.getUserId();
+                            this.header.blockLoginNodesAfterLogin();
+                            this.gameArea.changeAreaContent(Content.ROOM);
+                            this.presenter.switchToRoomMode();
+                        } else {
+                            Logger.log("Problem with returning user values.");
+                        }
+                    }
+                } else {
+                    Logger.log("Nickname problem.");
+                }
+            }
+        } catch (Exception e){
+            Logger.log("Connection problem.");
+        }
     }
 
     public void handleScrollPaneKeyEvent(KeyEvent keyEvent) {
@@ -112,6 +152,10 @@ public class Game {
         return gameInstance;
     }
 
+    public String getIpFromInput(){
+        return this.header.getHeaderIpTextField().getText();
+    }
+
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -130,6 +174,14 @@ public class Game {
 
     public Header getHeader() {
         return header;
+    }
+
+    public String getUserNick() {
+        return userNick;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public synchronized static void setActualSceneHeight(double actualSceneHeight) {

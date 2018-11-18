@@ -1,4 +1,4 @@
-package pl.game.client.presenter;
+package pl.game.client.logic;
 
 import pl.game.client.util.Const;
 
